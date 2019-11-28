@@ -4,16 +4,17 @@ from model import Base, Product
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-
-engine = create_engine('sqlite:///database.db')
-Base.metadata.create_all(engine)
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
-
+def create_session():
+	engine = create_engine('sqlite:///database.db')
+	Base.metadata.create_all(engine)
+	DBSession = sessionmaker(bind=engine)
+	session = DBSession()
+	return session
 
 
 def add_product(name,price,picture_link ,description):
-	student_object = Product(
+	session = create_session()
+	product_object = Product(
 		name=name,
 		price=price,
 		picture_link=picture_link,
@@ -23,6 +24,7 @@ def add_product(name,price,picture_link ,description):
 
 
 def update_price(Id,price):
+	session = create_session()
 	product_object = session.query(
 		Product).filter_by(
 		Id=Id).first()
@@ -32,7 +34,7 @@ def update_price(Id,price):
 
 
 def delete_product(Id):
-
+	session = create_session
 	session.query(Product).filter_by(
 		Id=Id).delete()
 	session.commit()
@@ -41,7 +43,7 @@ def delete_product(Id):
 
 
 def query_all():
-
+	session = create_session()
 	products = session.query(
 		Product).all()
 	return products
@@ -49,7 +51,7 @@ def query_all():
 
 
 def query_by_Id(Id):
-
+	session = create_session()
 	product = session.query(
 	Product).filter_by(
 	Id=Id).first()
@@ -63,6 +65,6 @@ def check():
 
 
 
-
+check()
 
 

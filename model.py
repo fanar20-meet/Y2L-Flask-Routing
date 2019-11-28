@@ -6,7 +6,7 @@ Base = declarative_base()
 
 
 
-class product(Base):
+class Product(Base):
 	__tablename__ = 'products'
 	Id = Column(Integer , primary_key=True)
 	name = Column(String)

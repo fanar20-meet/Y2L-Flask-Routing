@@ -15,9 +15,9 @@ def home():
 
 @app.route('/store')
 def store():
-	return render_template("store.html")
-	quary_all()
-	check()
+	allproducts= query_all()
+	return render_template("store.html",
+		allproducts = allproducts)
 
 @app.route('/about')
 def about():

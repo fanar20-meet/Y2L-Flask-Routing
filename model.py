@@ -10,12 +10,13 @@ class Product(Base):
 	__tablename__ = 'products'
 	Id = Column(Integer , primary_key=True)
 	name = Column(String)
-	price = (Float)
-	pricture_link =(String)
-	description = (String)
+	price = Column(Float)
+	picture_link =Column(String)
+	description = Column(String)
 
 
 
 class Cart():
 	__table__ = "cart"
-	product_id = Column(Integer,primary_key=True)
+	Id = Column(Integer,primary_key=True)
+	productID = Column(Integer)
